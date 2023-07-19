@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetNameQuery } from "../services/countries";
 const Detail = () => {
-  const [detail, setDetail] = useState([]);
   const nav = useNavigate();
   const { name } = useParams();
   const { data, isFetching } = useGetNameQuery(name);
-  console.log(data);
-  // useEffect(() => {
-  //   setDetail(data[0]);
-  // }, [data]);
+
   return (
     <div className=" container mx-auto px-5">
       <div className=" my-10">
@@ -38,10 +34,6 @@ const Detail = () => {
               <h1 className=" font-bold text-2xl">{data[0]?.name.common}</h1>
               <div className=" flex flex-col flex-wrap gap-2 h-[280px] md:h-[180px]">
                 <p>
-                  <span className=" font-semibold">Native Name: </span>
-                  {/* {data[0]?.name.nativeName.ara.common} */}
-                </p>
-                <p>
                   <span className=" font-semibold">Population: </span>
                   {data[0]?.population}
                 </p>
@@ -61,22 +53,6 @@ const Detail = () => {
                   <span className=" font-semibold">Top Level Domain: </span>
                   {data[0]?.tld[0]}
                 </p>
-                <p>
-                  <span className=" font-semibold">Currencies: </span>
-                  {/* {data[0]?.currencies?.name} */}
-                </p>
-                <p>
-                  <span className=" font-semibold">Languages: </span>
-                  {/* {data[0]?.languages.ara} */}
-                </p>
-              </div>
-            </div>
-            <div className=" flex gap-3 items-center">
-              <p className="font-semibold">Border Countries:</p>
-              <div className=" flex gap-2">
-                <button className=" px-6 py-1 border shadow-md">France</button>
-                <button className=" px-6 py-1 border shadow-md">France</button>
-                <button className=" px-6 py-1 border shadow-md">France</button>
               </div>
             </div>
           </div>

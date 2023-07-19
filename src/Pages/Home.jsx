@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useGetCountriesQuery, useGetRegionQuery } from "../services/countries";
+import {
+  useGetCountriesQuery,
+  useGetNameQuery,
+  useGetRegionQuery,
+} from "../services/countries";
 import Search from "../components/Search";
 import Select from "../components/Select";
 import Card from "../components/Card";
@@ -8,8 +12,12 @@ import CardSkeleton from "../components/CardSkeleton";
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState(null);
+  const [searchName, setSearchName] = useState();
+
   const { data } = useGetCountriesQuery();
   const { data: regions, isFetching } = useGetRegionQuery(region);
+  const { data: searchCountry } = useGetNameQuery(searchName);
+  // console.log(searchCountry);
 
   useEffect(() => {
     if (region === null || region === "All") {
@@ -18,17 +26,27 @@ const Home = () => {
       setCountries(regions);
     }
   }, [data, regions, region]);
+
   return (
     <>
       <div className=" container mx-auto px-5 my-10 flex flex-col md:flex-row gap-5 md:gap-0 justify-between items-start md:items-center">
-        <Search />
+        <Search setSearchName={setSearchName} />
         <Select setRegion={setRegion} />
       </div>
       <div className="container mx-auto px-5 pb-10">
         <div className=" grid grid-cols-12 gap-10 w-[100%]">
-          {isFetching
-            ? countries?.map((t, index) => {
-                return <CardSkeleton key={index} />;
+          {searchName?.length > 1
+            ? searchCountry?.map((c, index) => {
+                return (
+                  <Card
+                    key={index}
+                    name={c.name.common}
+                    population={c.population}
+                    region={c.region}
+                    capital={c.capital}
+                    img={c.flags.png}
+                  />
+                );
               })
             : countries?.map((country, index) => {
                 return (
