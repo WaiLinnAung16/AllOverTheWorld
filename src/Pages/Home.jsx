@@ -33,8 +33,8 @@ const Home = () => {
         <Search setSearchName={setSearchName} />
         <Select setRegion={setRegion} />
       </div>
-      <div className="container mx-auto px-5 pb-10">
-        <div className=" grid grid-cols-12 gap-10 w-[100%]">
+      <div className="container mx-auto pb-10">
+        <div className=" grid grid-cols-12 gap-10 px-5">
           {isFetching && countries?.map((t) => <CardSkeleton key={t} />)}
           {searchName?.length > 1
             ? searchCountry?.map((c, index) => {

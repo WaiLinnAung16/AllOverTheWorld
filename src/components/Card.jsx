@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ name, population, region, capital, img }) => {
   return (
-    <div className="col-span-12 md:col-span-6 lg:col-span-3 bg-white rounded-md shadow overflow-hidden max-w-sm h-[330px] transition-all duration-500 hover:border hover:border-1 hover:border-green-600 hover:shadow-xl hover:-translate-y-1">
+    <div className="col-span-10 md:col-span-6 lg:col-span-3 bg-white rounded-md shadow overflow-hidden w-[280px]  md:max-w-full h-[330px] transition-all duration-500 hover:border hover:border-1 hover:border-green-600 hover:shadow-xl hover:-translate-y-1">
       <Link to={`/detail/${name}`}>
         <div>
           <img src={img} alt="" className="object-cover w-full h-[150px]" />
