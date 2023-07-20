@@ -9,7 +9,7 @@ import Select from "../components/Select";
 import Card from "../components/Card";
 import CardSkeleton from "../components/CardSkeleton";
 
-const Home = () => {
+const Home = ({ darkMode }) => {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState(null);
   const [searchName, setSearchName] = useState();
@@ -31,11 +31,12 @@ const Home = () => {
     <>
       <div className=" container mx-auto px-5 my-10 flex flex-col md:flex-row gap-5 md:gap-0 justify-between items-start md:items-center">
         <Search setSearchName={setSearchName} />
-        <Select setRegion={setRegion} />
+        <Select setRegion={setRegion} darkMode={darkMode} />
       </div>
       <div className="container mx-auto pb-10">
         <div className=" grid grid-cols-12 gap-10 px-5">
-          {isFetching && countries?.map((t) => <CardSkeleton key={t} />)}
+          {isFetching &&
+            countries?.map((t, index) => <CardSkeleton key={index} />)}
           {searchName?.length > 1
             ? searchCountry?.map((c, index) => {
                 return (

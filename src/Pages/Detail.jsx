@@ -12,14 +12,14 @@ const Detail = () => {
       <div className=" my-10">
         <button
           onClick={() => nav("/")}
-          className="flex items-center gap-3 px-4 py-2 bg-white shadow-md font-bold"
+          className="flex items-center gap-3 px-4 py-2 bg-white dark:bg-[#2B3945] dark:text-white shadow-md font-bold"
         >
           <BsArrowLeft />
           Back
         </button>
       </div>
       {!isFetching && (
-        <div className="grid grid-cols-12 gap-5 lg:gap-10 items-center pb-10">
+        <div className="grid grid-cols-12 gap-5 lg:gap-10 items-center pb-10 dark:text-white">
           <div className=" col-span-12 lg:col-span-6">
             <div className=" w-full">
               <img
